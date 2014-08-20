@@ -1,0 +1,31 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Feeds";
+}
+
+<h2>@ViewBag.feedTitle</h2>
+<table>
+
+
+@foreach (var item in ViewBag.Feeds)
+{
+    <tr>
+        <td>
+            <a href="@item.Links[0].Uri" target="_blank"> <b>@item.Title.Text</b> </a>
+            
+            @*<a href="@item.Links[0].Uri" target="_blank" @Url.Action("LogViewedFeed", new{feedTitle = @item.Title.Text}) > <b>@item.Title.Text</b> </a>*@
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @item.PublishDate.ToString("yyyy-MM-dd hh:mm")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Raw(item.Content.Text) <a href="@item.Links[0].Uri" target="_blank">more</a>
+        </td>
+    </tr>
+}
+</table>
